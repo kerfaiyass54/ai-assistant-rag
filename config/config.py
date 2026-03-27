@@ -1,10 +1,13 @@
 # config.py — Central configuration for the RAG assistant
 
+import os
+
 # Ollama model to use (must be pulled locally)
 OLLAMA_MODEL = "llama3:8b"
 
-# Ollama base URL (default local server)
-OLLAMA_BASE_URL = "http://localhost:11434"
+# Reads OLLAMA_HOST env var — set automatically by Docker Compose,
+# falls back to localhost for running the app directly.
+OLLAMA_BASE_URL = os.getenv("OLLAMA_HOST", "http://localhost:11434")
 
 # System prompt injected into every query
 SYSTEM_PROMPT = """You are a helpful AI assistant. You must answer the user's question 
